@@ -1,13 +1,9 @@
-import * as S from './styles'
+import * as Style from "./styles";
 
 export function Groups() {
   return (
-    <S.Container>
-      <S.Title>
-        Groups
-      </S.Title>
-    </S.Container>
+    <Style.Container>
+  
+    </Style.Container>
   );
 }
-
-
