@@ -12,6 +12,7 @@ export const Container = styled(TouchableOpacity)<Props>`
 
   min-height: 56px;
   max-height: 56px;
+  margin-top: 20px;
   
   background-color: ${({ theme, type }) =>
     type === "PRIMARY" ? theme.COLORS.GREEN_700 : theme.COLORS.RED_DARK}
