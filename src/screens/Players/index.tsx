@@ -2,6 +2,7 @@ import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 import { ButtonIcon } from "@components/ButtonIcon";
 import { Input } from "@components/Input";
+import { Filter } from "@components/Filter";
 
 import * as Style from "./styles";
 
@@ -24,6 +25,12 @@ export function Players() {
          icon="add" 
         />
       </Style.Form>
+
+      <Filter 
+      title="time a"
+      
+      />
+  
     </Style.Container>
   );
 }
