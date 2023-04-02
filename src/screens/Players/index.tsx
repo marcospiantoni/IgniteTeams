@@ -6,12 +6,14 @@ import { Highlight } from "@components/Highlight";
 import { ButtonIcon } from "@components/ButtonIcon";
 import { Input } from "@components/Input";
 import { Filter } from "@components/Filter";
+import { PlayerCard } from "@components/PlayerCard";
 
 import * as Style from "./styles";
 
+
 export function Players() {
   const [team, setTeam] = useState('Time A');
-  const [player, setPlayer] = useState([' Marcos', 'Augusto', 'Cauas'])
+  const [players, setPlayer] = useState([' Marcos', 'Augusto', 'Cauas'])
 
 
   return (
@@ -41,9 +43,20 @@ export function Players() {
         horizontal
       />
       <Style.NumbersOfPlayers>
-        {player.length}
+        {players.length}
       </Style.NumbersOfPlayers>
     </Style.HeaderList>
+
+    <FlatList 
+     data={players}
+     keyExtractor={item => item}
+     renderItem={({item}) => (
+      <PlayerCard 
+        name={item}
+        onRemove={() => { }}
+      />
+     )}
+    />
     </Style.Container>
   );
 }
