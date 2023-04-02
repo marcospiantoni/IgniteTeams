@@ -43,9 +43,9 @@ export function Players() {
           )}
           horizontal
         />
-        <Style.NumbersOfPlayers>
+        <Style.NumberOfPlayers>
           {players.length}
-        </Style.NumbersOfPlayers>
+        </Style.NumberOfPlayers>
       </Style.HeaderList>
 
       <FlatList
@@ -64,7 +64,7 @@ export function Players() {
         ]}
       />
       <Button
-      title="Remover turma" 
+      title="Remover Turma" 
       type="SECONDARY"
       />
     </Style.Container>
