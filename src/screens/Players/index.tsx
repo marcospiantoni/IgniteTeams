@@ -7,14 +7,14 @@ import { ButtonIcon } from "@components/ButtonIcon";
 import { Input } from "@components/Input";
 import { Filter } from "@components/Filter";
 import { PlayerCard } from "@components/PlayerCard";
+import { ListEmpty } from "@components/ListEmpty";
+import { Button } from "@components/Button";
 
 import * as Style from "./styles";
 
-
 export function Players() {
-  const [team, setTeam] = useState('Time A');
-  const [players, setPlayer] = useState([' Marcos', 'Augusto', 'Cauas'])
-
+  const [team, setTeam] = useState("Time A");
+  const [players, setPlayer] = useState([" Marcos", "Augusto", "Cauas"]);
 
   return (
     <Style.Container>
@@ -29,34 +29,44 @@ export function Players() {
 
         <ButtonIcon icon="add" />
       </Style.Form>
-      
-      <Style.HeaderList>
-      <FlatList
-        data={["Time A", "Time B"]}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => 
-           <Filter 
-            title={item} 
-            isActive={item === team}
-            onPress={() => setTeam(item)}
-        />}
-        horizontal
-      />
-      <Style.NumbersOfPlayers>
-        {players.length}
-      </Style.NumbersOfPlayers>
-    </Style.HeaderList>
 
-    <FlatList 
-     data={players}
-     keyExtractor={item => item}
-     renderItem={({item}) => (
-      <PlayerCard 
-        name={item}
-        onRemove={() => { }}
+      <Style.HeaderList>
+        <FlatList
+          data={["Time A", "Time B"]}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <Filter
+              title={item}
+              isActive={item === team}
+              onPress={() => setTeam(item)}
+            />
+          )}
+          horizontal
+        />
+        <Style.NumbersOfPlayers>
+          {players.length}
+        </Style.NumbersOfPlayers>
+      </Style.HeaderList>
+
+      <FlatList
+        data={players}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <PlayerCard name={item} onRemove={() => {}} />
+        )}
+        ListEmptyComponent={() => (
+          <ListEmpty message="Não pessoas nesse time!" />
+        )}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+           {paddingBottom: 100}, 
+           players.length === 0 && {flex: 1}
+        ]}
       />
-     )}
-    />
+      <Button
+      title="Remover turma" 
+      type="SECONDARY"
+      />
     </Style.Container>
   );
 }

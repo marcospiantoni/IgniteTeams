@@ -29,8 +29,9 @@ export function Groups() {
        )}contentContainerStyle={groups.length === 0 && {flex: 1}}
          ListEmptyComponent={() => ( 
             <ListEmpty 
-            message="Cadastre uma turma!"/>)}
-      />
+            message="Cadastre uma turma!"/>
+          )}
+        />
       <Button
        title="Criar nova turma"
        />
