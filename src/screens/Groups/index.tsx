@@ -12,6 +12,7 @@ import * as Style from "./styles";
 export function Groups() {
   const [groups, setGroups] = useState<string[]>(
     []);
+
   return (
     <Style.Container>
       <Header />
@@ -34,7 +35,7 @@ export function Groups() {
         />
       <Button
        title="Criar nova turma"
-       />
+      />
     </Style.Container>
   );
 }
