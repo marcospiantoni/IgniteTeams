@@ -15,7 +15,7 @@ export function AppRoutes() {
       />
 
       <Screen 
-        name="newgroup" 
+        name="new" 
         component={NewGroup} 
       />
 
