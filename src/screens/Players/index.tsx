@@ -14,7 +14,7 @@ import * as Style from "./styles";
 
 export function Players() {
   const [team, setTeam] = useState("Time A");
-  const [players, setPlayer] = useState([" Marcos", "Augusto", "Cauas"]);
+  const [players, setPlayer] = useState([]);
 
   return (
     <Style.Container>
