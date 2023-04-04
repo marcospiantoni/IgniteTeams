@@ -26,7 +26,6 @@ export function NewGroup() {
       if(group.trim().length === 0 ) {
         return  Alert.alert("Novo Grupo", "Informe um nome para a turma");
       }
-      
       await groupCreate(group);
       navigation.navigate("players", { group });
 
@@ -58,7 +57,8 @@ export function NewGroup() {
 
         <Button
          title="Criar" 
-         onPress={handleNew} />
+         onPress={handleNew}
+        />
       </Style.Content>
     </Style.Container>
   );
