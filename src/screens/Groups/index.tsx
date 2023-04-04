@@ -32,7 +32,6 @@ export function Groups() {
     }
 
     useFocusEffect(useCallback(() => {
-      console.log('useFocusEffect executou')
       fetchGroups();
     }, []));
 
