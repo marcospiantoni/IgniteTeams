@@ -10,11 +10,7 @@ import { Header } from "@components/Header";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 
-
 import * as Style from "./styles";
-
-
-
 
 export function NewGroup() {
   const [group, setGroup] = useState('');
