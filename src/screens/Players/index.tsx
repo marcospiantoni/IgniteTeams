@@ -7,6 +7,8 @@ import { AppError } from "@utils/AppError";
 import { PlayerStorageDTO } from "@storage/players/PlayerStorageDTO"
 import { playerAddByGroup } from "@storage/players/playerAddByGroup";
 import { playersGetByGroup } from "@storage/players/playersGetByGroup";
+import { playerRemoveByGroup } from "@storage/players/playerRemoveByGroup";
+import { playersGetByGroupAndTeam } from "@storage/players/playersGetByGroupAndTeam";
 
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
@@ -18,9 +20,6 @@ import { ListEmpty } from "@components/ListEmpty";
 import { Button } from "@components/Button";
 
 import * as Style from "./styles";
-import { playersGetByGroupAndTeam } from "@storage/players/playersGetByGroupAndTeam";
-
-
 
 type RouteParams = {
   group: string;
@@ -38,7 +37,7 @@ export function Players() {
 
   async function handleAddPlayer() {
     if(newPlayerName.trim().length === 0) {
-     return Alert.alert("Nova pessoa", "Informe o nome da pessoa para adicionar.")
+     return Alert.alert("Novo participante", "Informe o nome do participante para adicionar.")
     }
 
     const newPlayer = {
@@ -59,10 +58,10 @@ export function Players() {
 
     }catch(error) {
       if(error instanceof AppError){
-        Alert.alert("Nova pessoa", error.message);
+        Alert.alert("Novo participante", error.message);
       }else {
         console.log(error);
-        Alert.alert("Nova pessoa", "Não foi possivel adicionar.")
+        Alert.alert("Novo participante", "Não foi possivel adicionar.")
       }
     }
   }
@@ -73,8 +72,20 @@ export function Players() {
       setPlayer(playersByTeam)
     } catch (error) {
       console.log(error);
-      Alert.alert("Pessoar", "Não foi possivel carregar as pessoas do time");
+      Alert.alert("Pessoar", "Não foi possivel carregar os participante do time");
     }
+  }
+
+  async function handlePlayerRemove(playerName: string) {
+   try {
+     await playerRemoveByGroup(playerName, group);
+     fetchPlayersByTeam(); 
+     console.log('remove', '-', playerName, '-', team, '-', 'Grupo:',group);
+
+   } catch (error) {
+    console.log(error);
+    Alert.alert("Remover Participante", "Não foi possivel remover esse participante")
+   }
   }
 
   useEffect(() => {
@@ -94,7 +105,7 @@ export function Players() {
          inputRef={newPlayerNameInputRef}
          onChangeText={setNewPlayerName}
          value={newPlayerName}
-         placeholder="Nome da pessoa" 
+         placeholder="Nome do participante" 
          autoCorrect={false} 
          onSubmitEditing={handleAddPlayer}
          returnKeyType="done"
@@ -130,7 +141,7 @@ export function Players() {
         renderItem={({ item }) => (
           <PlayerCard 
            name={item.name} 
-           onRemove={() => {}} 
+           onRemove={() => handlePlayerRemove(item.name)} 
           />
         )}
         ListEmptyComponent={() => (
